@@ -13,7 +13,7 @@
     <title>Ample Admin Lite Template by WrapPixel</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/plugins/images/favicon.png') }}">
 
 
     {% block stylesheets %}
@@ -24,25 +24,6 @@
         <!-- Custom CSS -->
     {% endblock %}
 
-    {% block javascripts %}
-        <script src="{{ asset('assets/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="{{ asset('assets/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{ asset('asstes/js/app-style-switcher.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
-        <!--Wave Effects -->
-        <script src="{{ asset('assets/js/waves.js') }}"></script>
-        <!--Menu sidebar -->
-        <script src="{{ asset('assetsjs/sidebarmenu.js') }}"></script>
-        <!--Custom JavaScript -->
-        <script src="{{ asset('assets/js/custom.js') }}"></script>
-        <!--This page JavaScript -->
-        <!--chartis chart-->
-        <script src="{{ asset('assets/plugins/bower_components/chartist/dist/chartist.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
-        <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script>
-
-    {% endblock %}
 
 </head>
 
@@ -113,7 +94,9 @@
     </header>
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+
+{% endblock %}
 
 {% block footer %}
     <footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
@@ -123,6 +106,25 @@
     <!-- End footer -->
 {% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('assets/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{ asset('assets/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('asstes/js/app-style-switcher.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+    <!--Wave Effects -->
+    <script src="{{ asset('assets/js/waves.js') }}"></script>
+    <!--Menu sidebar -->
+    <script src="{{ asset('assetsjs/sidebarmenu.js') }}"></script>
+    <!--Custom JavaScript -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="{{ asset('assets/plugins/bower_components/chartist/dist/chartist.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script>
+
+{% endblock %}
 
 
 </html>

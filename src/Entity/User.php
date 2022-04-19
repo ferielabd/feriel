@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,8 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
+
     /**
      * @var int
      *
@@ -45,8 +47,8 @@ class User
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      * @Assert\NotBlank(message="Ce champs ne doit pas être vide")
      * @Assert\Email(
-     *     message = "l'Email :  '{{ value }}' n'est pas valid."
-     * )
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true)
      */
     private $email;
 
@@ -64,7 +66,10 @@ class User
      *
      * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
      *  * @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-     * @Assert\Length(min=3,minMessage="Votre Nom doit être supèrieur à 3 caractéres")
+     *@Assert\Regex(
+     *  pattern="/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/",
+     *  message="Votre mot de passe doit contenir au moins 1 chiffre, 1 majuscule, 1 minuscule et avoir une longueur d'au moins 8 caractères."
+     * )
      */
     private $mdp;
 
@@ -72,8 +77,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
-     *  * @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-     * @Assert\Length(min=3,minMessage="Votre Nom doit être supèrieur à 3 caractéres")
+     *   @Assert\NotBlank(message="Ce champs ne doit pas être vide")
+
      */
     private $adresse;
 
@@ -378,4 +383,28 @@ class User
     }
 
 
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

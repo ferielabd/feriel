@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\User1Type;
+use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
@@ -18,9 +19,9 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/indexC", name="app_user_index", methods={"GET"})
+     * @Route("/getC", name="app_user_index", methods={"GET"})
      */
-    public function indexC(EntityManagerInterface $entityManager): Response
+    public function getC(EntityManagerInterface $entityManager): Response
     {
         $users = $entityManager
             ->getRepository(User::class)
@@ -30,21 +31,9 @@ class UserController extends AbstractController
             'users' => $users,
         ]);
     }
-    /**
-     * @Route("/getB", name="", methods={"GET"})
-     */
-    public function getB(EntityManagerInterface $entityManager): Response
-    {
-        $users = $entityManager
-            ->getRepository(User::class)
-            ->findAll();
 
-        return $this->render('Admin/Profile.html.twig', [
-            'users' => $users,
-        ]);
-    }
     /**
-     * @Route("/backA", name="backA", methods={"GET"})
+     * @Route("/backA", name="app_user_indexA", methods={"GET"})
      */
     public function indexA(EntityManagerInterface $entityManager): Response
     {
@@ -52,7 +41,7 @@ class UserController extends AbstractController
         );
     }
     /**
-     * @Route("/frontC", name="", methods={"GET"})
+     * @Route("/frontC", name="app_user_frontC", methods={"GET"})
      */
     public function fontC(EntityManagerInterface $entityManager): Response
     {
@@ -62,13 +51,16 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request,UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
-        $form = $this->createForm(User1Type::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $hash = $encoder->encodePassword($user, $user->getMdp());
+            $user->setMdp($hash);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -96,7 +88,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(User1Type::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

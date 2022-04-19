@@ -1,11 +1,22 @@
-{% extends 'baseA.html.twig' %}
+{% extends 'baseC.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Nouveau Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
 
+    <h2>S'inscrire</h2>
+    <p>Veuillez vous inscrire  plus rapidement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     {{ include('user/_form.html.twig') }}
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+
 {% endblock %}
