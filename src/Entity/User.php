@@ -87,7 +87,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=false)
      *  @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-     * @Assert\Length(min=8,max=8,minMessage="CIN doit être égale à 8 chiffres numériques")
+     * @Assert\Length(min=8,max=8,minMessage="téléphone doit être égale à 8 chiffres numériques")
      */
     private $phone;
 
@@ -103,7 +103,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="sexe", type="string", length=255, nullable=false)
      *  @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-     * @Assert\Length(min=3,minMessage="Votre Nom doit être supèrieur à 3 caractéres")
+
      */
     private $sexe;
 
@@ -139,6 +139,8 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Please upload image")
+
      */
     private $image;
 
@@ -369,7 +371,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
@@ -377,7 +379,7 @@ class User implements UserInterface
     /**
      * @param string $image
      */
-    public function setImage(string $image): void
+    public function setImage($image)
     {
         $this->image = $image;
     }

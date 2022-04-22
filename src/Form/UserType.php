@@ -7,7 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserType extends AbstractType
 {
@@ -22,9 +23,16 @@ class UserType extends AbstractType
             ->add('adresse')
             ->add('phone')
             ->add('dateNaiss')
-            ->add('sexe')
-            ->add('role')
-            ->add('image')
+            ->add('sexe', ChoiceType::class, [
+                'choices'  => [
+                    'Selectionnez' => null,
+                    'male' => true,
+                    'femelle' => true,
+                ],
+            ])
+            ->add('image',FileType::class, [
+                'label' => null,
+                ])
 
         ;
     }

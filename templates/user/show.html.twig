@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ user.image }}</td>
+                <td><img src="{{ asset('upload/'~user.image) }}" style=" width:100px; height:100px; " alt=""/></td>
             </tr>
         </tbody>
     </table>

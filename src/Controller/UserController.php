@@ -59,6 +59,20 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $file= $user->getImage();
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            try {
+                $file->move(
+                    $this->getParameter('upload'),
+                    $fileName
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+            $entityManager=$this->getDoctrine()->getManager();
+            $user->setImage($fileName);
+
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
             $entityManager->persist($user);
