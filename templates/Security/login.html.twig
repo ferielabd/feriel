@@ -1,6 +1,7 @@
 {% extends 'baseC.html.twig' %}
 {% block body %}
 
+
     <section class="vh-100" style="background-color: #C0C0C0;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -16,6 +17,9 @@
 
                                     <form action="{{ path('security_login') }}" method= "post">
                                         {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+                                        {% if error %}
+                                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                        {% endif %}
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i ><img src="{{ asset ('images/logo.png') }}" alt="logo"/></i>
 

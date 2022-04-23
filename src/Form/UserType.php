@@ -33,8 +33,7 @@ class UserType extends AbstractType
 
             ->add('image',FileType::class, array('label'=>'Upload Image')
             )
-
-        ;
+        ->getForm();
     }
 
     public function configureOptions(OptionsResolver $resolver): void

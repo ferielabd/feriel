@@ -35,7 +35,14 @@ class UserController extends AbstractController
     }
 
 
-
+    /**
+     * @Route("/indexA", name="app_user_indexA", methods={"GET"})
+     */
+    public function indexA(EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('Admin/indexA.html.twig'
+        );
+    }
 
     /**
      * @Route("/frontC", name="app_user_frontC", methods={"GET"})
@@ -153,7 +160,7 @@ class UserController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
             $repo=$this->getDoctrine()->getRepository(User::class);
-            $clients=$repo->findAll();
+            $user=$repo->findAll();
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
