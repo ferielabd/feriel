@@ -30,9 +30,9 @@ class UserType extends AbstractType
                     'femelle' => true,
                 ],
             ])
-            ->add('image',FileType::class, [
-                'label' => null,
-                ])
+
+            ->add('image',FileType::class, array('label'=>'Upload Image')
+            )
 
         ;
     }

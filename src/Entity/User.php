@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity
+ * @UniqueEntity(fields={"login"}, message="There is already an account with this login")
  */
 class User implements UserInterface
 {
@@ -139,7 +141,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="Please upload image")
+
 
      */
     private $image;
@@ -368,20 +370,16 @@ class User implements UserInterface
         $this->role = $role;
     }
 
-    /**
-     * @return string
-     */
+
     public function getImage()
     {
-        return $this->image;
+
     }
 
-    /**
-     * @param string $image
-     */
+
     public function setImage($image)
     {
-        $this->image = $image;
+
     }
 
 
