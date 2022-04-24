@@ -67,8 +67,8 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
-     *  * @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-     *@Assert\Regex(
+     * @Assert\NotBlank(message="Ce champs ne doit pas être vide")
+     * @Assert\Regex(
      *  pattern="/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/",
      *  message="Votre mot de passe doit contenir au moins 1 chiffre, 1 majuscule, 1 minuscule et avoir une longueur d'au moins 8 caractères."
      * )
@@ -370,16 +370,21 @@ class User implements UserInterface
         $this->role = $role;
     }
 
-
+    /**
+     * @return string
+     */
     public function getImage()
     {
-
+        return $this->image;
     }
 
 
+    /**
+     * @param string $image
+     */
     public function setImage($image)
     {
-
+        $this->image = $image;
     }
 
 

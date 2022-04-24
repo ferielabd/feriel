@@ -15,8 +15,8 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form action="{{ path('security_login') }}" method= "post">
-                                        {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+
+                                        {{ form_start(formL,{attr:{novalidate:'novalidate'}}) }}
                                         {% if error %}
                                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                         {% endif %}
@@ -29,15 +29,15 @@
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example17">Login</label>
-                                            {{ form_widget(form.login,{'attr':{'class':'form-control '}}) }}
-                                            {{ form_errors(form.login,{'attr':{'class':'form-control'}}) }}
+                                            {{ form_widget(formL.login,{'attr':{'class':'form-control '}}) }}
+                                            {{ form_errors(formL.login,{'attr':{'class':'form-control'}}) }}
 
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example27">Password</label>
-                                            {{ form_widget(form.mdp,{'attr':{'class':'form-control '}}) }}
-                                            {{ form_errors(form.mdp,{'attr':{'class':'form-control'}}) }}
+                                            {{ form_widget(formL.mdp,{'attr':{'class':'form-control '}}) }}
+                                            {{ form_errors(formL.mdp,{'attr':{'class':'form-control'}}) }}
                                         </div>
 
                                         <div class="pt-1 mb-4">
@@ -62,9 +62,9 @@
                                             </button>
                                         </div>
 
-                                        {{ form_end(form) }}
+                                        {{ form_end(formL) }}
 
-                                    </form>
+
 
                                 </div>
                             </div>

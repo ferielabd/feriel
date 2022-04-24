@@ -93,12 +93,17 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $request->files->get('user')['image'];
+            $uploads_directory = $this->getParameter('uploads_directory');
 
-            $file = $user->getImage();
-            dump($user->getImage());
-            $filename = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('uploads_directory'),$filename);
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
             $user->setImage($filename);
+            $user->setRole('membre');
+
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
             $entityManager->persist($user);
@@ -167,4 +172,20 @@ class UserController extends AbstractController
     }
 
 
+    /**
+
+
+     *@Route("/{idUser}/rem",name="rem_client")
+     */
+
+    public function remove(User $user){
+
+        $manager=$this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
+        $repo=$this->getDoctrine()->getRepository(User::class);
+        $clients=$repo->findAll();
+        return $this->redirectToRoute('app_user_index', []);
+
+    }
 }

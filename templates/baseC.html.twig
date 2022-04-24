@@ -2,43 +2,57 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}TabDeal{% endblock %}</title>
+    <title>
+        {% block title %}TabDeal
+        {% endblock %}
+    </title>
     {% block stylesheets %}
         <!-- Meta Tag -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name='copyright' content=''>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta
+                name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Title Tag  -->
         <title>Fill d'actualité</title>
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="{{ asset ('images/favicon.png') }}">
+        <link
+                rel="icon" type="image/png" href="{{ asset ('images/favicon.png') }}">
         <!-- Web Font -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
         <!-- StyleSheet -->
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}">
-        <!-- Magnific Popup -->
-        <link rel="stylesheet" href="{{ asset ('css/magnific-popup.min.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}"> <!-- Magnific Popup -->
+        <link
+                rel="stylesheet" href="{{ asset ('css/magnific-popup.min.css') }}">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{{ asset ('css/font-awesome.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/font-awesome.css') }}">
         <!-- Fancybox -->
-        <link rel="stylesheet" href="{{ asset ('css/jquery.fancybox.min.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/jquery.fancybox.min.css') }}">
         <!-- Themify Icons -->
-        <link rel="stylesheet" href="{{ asset ('css/themify-icons.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/themify-icons.css') }}">
         <!-- Nice Select CSS -->
-        <link rel="stylesheet" href="{{ asset ('css/niceselect.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/niceselect.css') }}">
         <!-- Animate CSS -->
-        <link rel="stylesheet" href="{{ asset ('css/animate.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/animate.css') }}">
         <!-- Flex Slider CSS -->
-        <link rel="stylesheet" href="{{ asset ('css/flex-slider.min.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/flex-slider.min.css') }}">
         <!-- Owl Carousel -->
-        <link rel="stylesheet" href="{{ asset ('css/owl-carousel.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/owl-carousel.css') }}">
         <!-- Slicknav -->
-        <link rel="stylesheet" href="{{ asset ('css/slicknav.min.css') }}">
+        <link
+                rel="stylesheet" href="{{ asset ('css/slicknav.min.css') }}">
         <!-- Eshop StyleSheet -->
         <link rel="stylesheet" href="{{ asset ('css/reset.css') }}">
         <link rel="stylesheet" href="{{ asset ('style.css') }}">
@@ -58,27 +72,40 @@
 </div>
 <!-- End Preloader -->
 <!-- Header -->
-<header class="header shop">
+<header
+        class="header shop">
     <!-- Topbar -->
     <div class="topbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-12 col-12">
+                <div
+                        class="col-lg-5 col-md-12 col-12">
                     <!-- Top Left -->
                     <div class="top-left">
                         <ul class="list-main">
-                            <li><i class="ti-headphone-alt"></i> +216 44 19 44 60</li>
-                            <li><i class="ti-email"></i> support@tabdeal.tn</li>
+                            <li>
+                                <i class="ti-headphone-alt"></i>
+                                +216 44 19 44 60</li>
+                            <li>
+                                <i class="ti-email"></i>
+                                support@tabdeal.tn</li>
                         </ul>
                     </div>
                     <!--/ End Top Left -->
                 </div>
-                <div class="col-lg-7 col-md-12 col-12">
+                <div
+                        class="col-lg-7 col-md-12 col-12">
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                            <li><i class="ti-power-off"></i><a href="{{ asset ('login.html#') }}">Login</a></li>
+                            <li>
+                                <i class="ti-user"></i>
+                                <a href="#">My account</a>
+                            </li>
+                            <li>
+                                <i class="ti-power-off"></i>
+                                <a href="{{ asset ('login.html#') }}">Login</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- End Top Right -->
@@ -90,7 +117,8 @@
     <div class="middle-inner">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-12">
+                <div
+                        class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
                         <a href="{{ asset ('index.html') }}"><img src="{{ asset ('images/logo.png') }}" alt="logo"></a>
@@ -98,12 +126,18 @@
                     <!--/ End Logo -->
                     <!-- Search Form -->
                     <div class="search-top">
-                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                        <div class="top-search">
+                            <a href="#0">
+                                <i class="ti-search"></i>
+                            </a>
+                        </div>
                         <!-- Search Form -->
                         <div class="search-top">
                             <form class="search-form">
                                 <input type="text" placeholder="Search here..." name="search">
-                                <button value="search" type="submit"><i class="ti-search"></i></button>
+                                <button value="search" type="submit">
+                                    <i class="ti-search"></i>
+                                </button>
                             </form>
                         </div>
                         <!--/ End Search Form -->
@@ -126,22 +160,32 @@
                             </select>
                             <form>
                                 <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn"><i class="ti-search"></i></button>
+                                <button class="btnn">
+                                    <i class="ti-search"></i>
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-12">
-                    <div class="right-bar">
+                    <div
+                            class="right-bar">
                         <!-- Search Form -->
                         <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            <a href="#" class="single-icon">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </a>
                         </div>
                         <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                            <a href="#" class="single-icon">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            </a>
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <a href="#" class="single-icon">
+                                <i class="ti-bag"></i>
+                                <span class="total-count">2</span>
+                            </a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
@@ -150,16 +194,28 @@
                                 </div>
                                 <ul class="shopping-list">
                                     <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a href="#" class="remove" title="Remove this item">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
                                         <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Ring</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                        <h4>
+                                            <a href="#">Woman Ring</a>
+                                        </h4>
+                                        <p class="quantity">1x -
+                                            <span class="amount">$99.00</span>
+                                        </p>
                                     </li>
                                     <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a href="#" class="remove" title="Remove this item">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
                                         <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Necklace</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                        <h4>
+                                            <a href="#">Woman Necklace</a>
+                                        </h4>
+                                        <p class="quantity">1x -
+                                            <span class="amount">$35.00</span>
+                                        </p>
                                     </li>
                                 </ul>
                                 <div class="bottom">
@@ -181,33 +237,52 @@
     <div class="header-inner">
         <div class="container">
             <div class="cat-nav-head">
-                <div class="row">
-                    {% block Categorie %}
-
-                    {% endblock %}
+                <div class="row"> {% block Categorie %}{% endblock %}
                     <div class="col-lg-9 col-12">
-                        <div class="menu-area">
+                        <div
+                                class="menu-area">
                             <!-- Main Menu -->
                             <nav class="navbar navbar-expand-lg">
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="#">Acceuil</a></li>
-                                            <li><a href="#">Produit</a></li>
-                                            <li><a href="#">Forum</a></li>
-                                            <li><a href="#">Echange<i class="ti-angle-down"></i><span class="new">Nouveau</span></a>
+                                            <li class="active">
+                                                <a href="#">Acceuil</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Produit</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Forum</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Echange<i class="ti-angle-down"></i>
+                                                    <span class="new">Nouveau</span>
+                                                </a>
                                                 <ul class="dropdown">
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li>
+                                                        <a href="cart.html">Cart</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="checkout.html">Checkout</a>
+                                                    </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Pages</a></li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
+                                            <li>
+                                                <a href="#">Pages</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Blog<i class="ti-angle-down"></i>
+                                                </a>
                                                 <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                    <li>
+                                                        <a href="blog-single-sidebar.html">Blog Single Sidebar</a>
+                                                    </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact Us</a></li>
+                                            <li>
+                                                <a href="contact.html">Contact Us</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -221,15 +296,15 @@
     </div>
     <!--/ End Header Inner -->
 </header>
-{% block body %}
-
-{% endblock %}
+{% block body %}{% endblock %}
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="ti-close" aria-hidden="true"></span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="row no-gutters">
@@ -248,22 +323,28 @@
 </div>
 <!-- Modal end -->
 <!-- Start Footer Area -->
-<footer class="footer">
+<footer
+        class="footer">
     <!-- Footer Top -->
     <div class="footer-top section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-6 col-12">
+                <div
+                        class="col-lg-5 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer about">
                         <div class="logo">
                             <a href="{{ asset ('index.html') }}"><img src="{{ asset ('images/logo2.png') }}" alt="#"></a>
                         </div>
-                        <p class="call">Call us 24/7<span><a href="tel:123456789">+216 44 19 44 60</a></span></p>
+                        <p class="call">Call us 24/7<span>
+										<a href="tel:123456789">+216 44 19 44 60</a>
+									</span>
+                        </p>
                     </div>
                     <!-- End Single Widget -->
                 </div>
-                <div class="col-lg-2 col-md-6 col-12">
+                <div
+                        class="col-lg-2 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer links">
                         <h4>Information</h4>
@@ -277,7 +358,8 @@
                     </div>
                     <!-- End Single Widget -->
                 </div>
-                <div class="col-lg-2 col-md-6 col-12">
+                <div
+                        class="col-lg-2 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer links">
                         <h4>Customer Service</h4>
@@ -291,7 +373,8 @@
                     </div>
                     <!-- End Single Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6 col-12">
+                <div
+                        class="col-lg-3 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer social">
                         <h4>Get In Tuch</h4>
@@ -323,7 +406,9 @@
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <div class="left">
-                            <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">TabDeal</a>  All Rights Reserved.</p>
+                            <p>Copyright © 2020
+                                <a href="http://www.wpthemesgrid.com" target="_blank">TabDeal</a>
+                                All Rights Reserved.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12">
@@ -369,6 +454,12 @@
     <script src="{{ asset ('js/easing.js') }}"></script>
     <!-- Active JS -->
     <script src="{{ asset ('js/active.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        }	)
+    </script>
 {% endblock %}
 </body>
 </html>
