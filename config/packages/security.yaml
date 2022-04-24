@@ -19,6 +19,13 @@ security:
             form_login:
                 login_path: security_login
                 check_path: security_login
+            guard:
+                authenticators:
+                    - App\Security\UserAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: /login
 
 
 
