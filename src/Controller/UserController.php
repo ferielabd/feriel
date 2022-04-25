@@ -58,15 +58,23 @@ class UserController extends AbstractController
      */
     public function new(Request $request,UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager): Response
     {
+
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $user->getImage();
-            $filename = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('uploads_directory'),$filename);
+            $file = $request->files->get('user')['image'];
+            $uploads_directory = $this->getParameter('uploads_directory');
+
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(
+                $uploads_directory,
+                $filename
+            );
             $user->setImage($filename);
+            $user->setRole('Admin');
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
             $entityManager->persist($user);
@@ -79,6 +87,10 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
+
+
+
+
     }
 
 

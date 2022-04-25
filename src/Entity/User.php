@@ -141,7 +141,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
-     *  @Assert\NotBlank(message="please Upload Image")
+
 
      */
     private $image;

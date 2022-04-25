@@ -54,7 +54,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
-            $credentials['email']
+            $credentials['login']
         );
 
         return $credentials;
@@ -67,10 +67,10 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['login' => $credentials['login']]);
 
         if (!$user) {
-            throw new UsernameNotFoundException('Email could not be found.');
+            throw new UsernameNotFoundException('login could not be found.');
         }
 
         return $user;
