@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article", indexes={@ORM\Index(name="art_boost", columns={"boost"}), @ORM\Index(name="id_Gouvernorat", columns={"id_Gouvernorat"}), @ORM\Index(name="art_user", columns={"id_proprietaire"}), @ORM\Index(name="art_cat", columns={"id_categorie"})})
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="id_Gouvernorat", columns={"id_Gouvernorat"}), @ORM\Index(name="art_user", columns={"id_proprietaire"}), @ORM\Index(name="art_cat", columns={"id_categorie"}), @ORM\Index(name="art_boost", columns={"boost"})})
  * @ORM\Entity
  */
 class Article
@@ -64,26 +64,6 @@ class Article
     private $image;
 
     /**
-     * @var \CategorieArticle
-     *
-     * @ORM\ManyToOne(targetEntity="CategorieArticle")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_categorie", referencedColumnName="id")
-     * })
-     */
-    private $idCategorie;
-
-    /**
-     * @var \Gouvernorat
-     *
-     * @ORM\ManyToOne(targetEntity="Gouvernorat")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_Gouvernorat", referencedColumnName="id_Gouvernorat")
-     * })
-     */
-    private $idGouvernorat;
-
-    /**
      * @var \Boost
      *
      * @ORM\ManyToOne(targetEntity="Boost")
@@ -102,6 +82,26 @@ class Article
      * })
      */
     private $idProprietaire;
+
+    /**
+     * @var \CategorieArticle
+     *
+     * @ORM\ManyToOne(targetEntity="CategorieArticle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_categorie", referencedColumnName="id")
+     * })
+     */
+    private $idCategorie;
+
+    /**
+     * @var \Gouvernorat
+     *
+     * @ORM\ManyToOne(targetEntity="Gouvernorat")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_Gouvernorat", referencedColumnName="id_Gouvernorat")
+     * })
+     */
+    private $idGouvernorat;
 
 
 }

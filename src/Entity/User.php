@@ -80,7 +80,6 @@ class User implements UserInterface
      *
      * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
      *   @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-
      */
     private $adresse;
 
@@ -105,7 +104,6 @@ class User implements UserInterface
      *
      * @ORM\Column(name="sexe", type="string", length=255, nullable=false)
      *  @Assert\NotBlank(message="Ce champs ne doit pas être vide")
-
      */
     private $sexe;
 
@@ -131,18 +129,15 @@ class User implements UserInterface
     private $nbArtPos = '0';
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255, nullable=false)
+     *  @var json
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $role = [];
 
     /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
-
-
      */
     private $image;
 
@@ -355,20 +350,31 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getRole(): ?string
+    public function getRole(): array
     {
-        return $this->role;
+        $role = $this->role;
+        // guarantee every user at least has ROLE_USER
+        $role[] = 'ROLE_USER';
+
+        return array_unique($role);
     }
 
     /**
-     * @param string $role
+     * @param array $role
      */
-    public function setRole(string $role): void
+    public function setRole(array $role): self
     {
         $this->role = $role;
+
+        return $this;
     }
+
+
+
+
+
 
     /**
      * @return string
