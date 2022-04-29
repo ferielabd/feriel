@@ -45,7 +45,7 @@ class RegistrationController extends AbstractController
             $email = (new Email())
                 ->from('ferielabdellatif46@gmail.com')
                 ->to($e)
-                ->subject('🥳 Une nouvelle user est ajouté à 🥳ForU🥳')
+                ->subject('🥳 Une nouvelle user est ajouté!')
 
                 ->text('Bien Inscrit . Vous voulez attendre une email de la part de ladmin');
 

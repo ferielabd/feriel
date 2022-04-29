@@ -129,8 +129,7 @@ class User implements UserInterface
     private $nbArtPos = '0';
 
     /**
-     *  @var json
-     * @ORM\Column(type="json")
+     * @ORM\Column(name="role", type="json")
      */
     private $role = [];
 
@@ -396,12 +395,17 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        $role = $this->role;
+        // guarantee every user at least has ROLE_USER
+        $role[] = 'ROLE_USER';
+
+        return array_unique($role);
     }
 
     public function getPassword()
     {
-        // TODO: Implement getPassword() method.
+        return $this->mdp;
+
     }
 
     public function getSalt()
@@ -411,7 +415,8 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->login;
+
     }
 
     public function eraseCredentials()

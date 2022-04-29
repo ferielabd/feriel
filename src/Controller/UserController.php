@@ -74,7 +74,7 @@ class UserController extends AbstractController
                 $filename
             );
             $user->setImage($filename);
-            $user->setRole('Admin');
+            $user->setRole("ROLE_USER");
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
             $entityManager->persist($user);
@@ -114,7 +114,7 @@ class UserController extends AbstractController
                 $filename
             );
             $user->setImage($filename);
-            $user->setRole('membre');
+            $user->setRole(['ROLE_USER']);
 
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
