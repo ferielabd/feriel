@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\File;
@@ -20,6 +21,7 @@ class UserController extends AbstractController
 {
 
 
+    //***********************************Admin start***********************************************************//
     /**
      * @Route("/getListe", name="app_user_index", methods={"GET"})
      */
@@ -36,20 +38,13 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/indexA", name="app_user_indexA", methods={"GET"})
+     * @Route("/Admin", name="app_user_indexA", methods={"GET"})
      */
-    public function indexA(EntityManagerInterface $entityManager): Response
+    public function indexA(): Response
     {
-        return $this->render('Admin/indexA.html.twig'
-        );
-    }
+        $user = $this->getUser();
 
-    /**
-     * @Route("/frontC", name="app_user_frontC", methods={"GET"})
-     */
-    public function fontC(EntityManagerInterface $entityManager): Response
-    {
-        return $this->render('Client/indexC.html.twig'
+        return $this->render('Admin/indexA.html.twig',['user',$user]
         );
     }
 
@@ -65,6 +60,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $file = $request->files->get('user')['image'];
             $uploads_directory = $this->getParameter('uploads_directory');
 
@@ -74,7 +70,7 @@ class UserController extends AbstractController
                 $filename
             );
             $user->setImage($filename);
-            $user->setRole("ROLE_USER");
+            $user->setRole(['ROLE_USER']);
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
             $entityManager->persist($user);
@@ -92,6 +88,80 @@ class UserController extends AbstractController
 
 
     }
+
+
+    /**
+     * @Route("/{idUser}", name="app_user_show", methods={"GET"})
+     */
+    public function show(): Response
+    {
+
+
+     $user = $this->getUser();
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/{idUser}/edit", name="app_user_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request,   UserPasswordEncoderInterface $encoder,EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('uploads_directory'),$filename);
+            $user->setImage($filename);
+            $hash = $encoder->encodePassword($user, $user->getMdp());
+            $user->setMdp($hash);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+
+
+     *@Route("/{idUser}/rem",name="rem_client")
+     */
+
+    public function remove(User $user){
+
+        $manager=$this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
+        $repo=$this->getDoctrine()->getRepository(User::class);
+        $users=$repo->findAll();
+        return $this->redirectToRoute('app_user_index', []);
+
+    }
+
+    //***********************************Admin End***********************************************************//
+
+
+
+
+    //***********************************Client Start***********************************************************//
+    /**
+     * @Route("/Client", name="app_user_frontC", methods={"GET"})
+     */
+    public function fontC(EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('Client/indexC.html.twig'
+        );
+    }
+
 
 
 
@@ -131,41 +201,7 @@ class UserController extends AbstractController
     }
 
 
-    /**
-     * @Route("/{idUser}", name="app_user_show", methods={"GET"})
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
 
-    /**
-     * @Route("/{idUser}/edit", name="app_user_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, User $user,  UserPasswordEncoderInterface $encoder,EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('image')->getData();
-            $filename = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('uploads_directory'),$filename);
-            $user->setImage($filename);
-            $hash = $encoder->encodePassword($user, $user->getMdp());
-            $user->setMdp($hash);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{idUser}", name="app_user_delete", methods={"POST"})
@@ -184,20 +220,11 @@ class UserController extends AbstractController
     }
 
 
-    /**
 
 
-     *@Route("/{idUser}/rem",name="rem_client")
-     */
 
-    public function remove(User $user){
 
-        $manager=$this->getDoctrine()->getManager();
-        $manager->remove($user);
-        $manager->flush();
-        $repo=$this->getDoctrine()->getRepository(User::class);
-        $clients=$repo->findAll();
-        return $this->redirectToRoute('app_user_index', []);
+    //***********************************Client End***********************************************************//
 
-    }
 }
+

@@ -359,7 +359,7 @@
                 <li class="profile">
                     <a href="#" data-toggle="dropdown" class="toggle">
                         <img src="{{ asset('data/profile/profile-ecommerce.jpg') }}" alt="user-image" class="img-circle img-inline">
-                        <span>Mark Willy <i class="fa fa-angle-down"></i></span>
+                        <span>{{ app.user.prenom }}<i class="fa fa-angle-down"></i></span>
                     </a>
                     <ul class="dropdown-menu profile animated fadeIn">
                         <li>
@@ -422,7 +422,7 @@
                 <div class="profile-details col-md-8 col-sm-8 col-xs-8">
 
                     <h3>
-                        <a href="#">Mark Willy</a>
+                        <a href="#">{{ app.user.prenom }}</a>
 
                         <!-- Available statuses: online, idle, busy, away and offline -->
                         <span class="profile-status online"></span>
