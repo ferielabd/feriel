@@ -8,6 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -51,7 +53,7 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request,UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager): Response
+    public function new(Request $request,UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager,MailerInterface $mailer): Response
     {
 
 
@@ -73,6 +75,20 @@ class UserController extends AbstractController
             $user->setRole(['ROLE_USER']);
             $hash = $encoder->encodePassword($user, $user->getMdp());
             $user->setMdp($hash);
+            $e=$form["email"]->getData();
+
+            $email = (new Email())
+                ->from('ferielabdellatif46@gmail.com')
+                ->to($e)
+                ->subject('🥳 Une nouvelle user est ajouté!')
+
+                ->text('Bien Inscrit 
+                
+                 Vous etes les bienvenus
+                 
+                 Vous voulez attendre une email de la part de l admin');
+
+            $mailer->send($email);
             $entityManager->persist($user);
             $entityManager->flush();
 

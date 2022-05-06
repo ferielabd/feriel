@@ -47,7 +47,11 @@ class RegistrationController extends AbstractController
                 ->to($e)
                 ->subject('🥳 Une nouvelle user est ajouté!')
 
-                ->text('Bien Inscrit . Vous voulez attendre une email de la part de l admin');
+                ->text('Bien Inscrit 
+                
+                 Vous etes les bienvenus
+                 
+                 Vous voulez attendre une email de la part de l admin');
 
             $mailer->send($email);
             $entityManager->persist($user);
