@@ -1,140 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Inscription</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: NiceAdmin - v2.2.2
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
-</head>
-
-<body>
-
-<main>
+<section class="shop checkout section">
     <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-10">
+                <div class="checkout-form">
 
-        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                    <h2>S'inscrire</h2>
+                    <p>Veuillez vous inscrire  plus rapidement</p>
 
-                        <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                <img src="assets/img/logo.png" alt="">
-                                <span class="d-none d-lg-block">Inscription Citoyen</span>
-                            </a>
-                        </div><!-- End Logo -->
 
-                        <div class="card mb-3">
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
 
-                            <div class="card-body">
 
-                                <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Créer Une Compte Citoyen</h5>
-                                    <p class="text-center small">Entrer vos données peronnels pour créer une compte</p>
+                    {{ form_start(registrationForm,{attr:{'novalidate':'novalidate'}}) }}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>First Name<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.nom,{'attr':{'class':'form-control '}}) }}
+                                {{ form_errors(registrationForm.nom,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Last Name<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.prenom,{'attr':{'class':'form-control '}}) }}
+                                {{ form_errors(registrationForm.prenom,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Email Address<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.email,{'attr':{'class':'form-control '}}) }}
+                                {{ form_errors(registrationForm.email,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Login<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.login,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(registrationForm.login,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Password<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.mdp,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(registrationForm.mdp,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Adresse<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.adresse,{'attr':{'class':'form-control '}}) }}
+                                {{ form_errors(registrationForm.adresse,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Phone No<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.phone,{'attr':{'class':'form-control '}}) }}
+                                {{ form_errors(registrationForm.phone,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Date Naissance<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.dateNaiss,{'attr':{'class':'form-control p-0 border-0'}}) }}
+                                {{ form_errors(registrationForm.dateNaiss,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Sexe<span>*</span>
+                                </label>
+                                {{ form_widget(registrationForm.sexe,{'attr':{'class':'form-control '}}) }}
+                                {{ form_errors(registrationForm.sexe,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div>
+                                <label>Image<span>*</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    {{ form_widget(registrationForm.image,{'attr':{'class':'form-control'}}) }}
+                                    {{ form_errors(registrationForm.image,{'attr':{'class':' form-control'}}) }}
+
                                 </div>
-
-                                {{ form_start(registrationForm,{'attr':{'novalidate': 'novalidate'}})  }}
-
-
-                                <label for="inputNanme4" class="form-label">Nom :</label>
-                                {{ form_widget(registrationForm.nom,{'attr':{'class':'form-control'}}) }}
-                                <span style="color:red">{{ form_errors(registrationForm.nom) }}</span>
-
-
-                                <label for="inputNanme4" class="form-label">Prénom :</label>
-                                {{ form_widget(registrationForm.prenom,{'attr':{'class':'form-control'}}) }}
-                                <span style="color:red">{{ form_errors(registrationForm.prenom) }}</span>
-
-
-                                <label for="inputEmail4" class="form-label">Email :</label>
-                                {{ form_widget(registrationForm.email,{'attr':{'class':'form-control'}}) }}
-                                <span style="color:red">{{ form_errors(registrationForm.email) }}</span>
-
-                                <label for="inputNanme4" class="form-label">CIN :</label>
-                                {{ form_widget(registrationForm.cin,{'attr':{'class':'form-control'}}) }}
-                                <span style="color:red">{{ form_errors(registrationForm.cin) }}</span>
-
-
-
-                                <label for="inputPassword4" class="form-label">Mot De Passe :</label>
-                                {{ form_widget(registrationForm.motDePasse,{'attr':{'class':'form-control'}}) }}
-                                <span style="color:red">{{ form_errors(registrationForm.motDePasse) }}</span>
-
-
-                                <label for="inputPassword4" class="form-label">Confirmer Mot De Passe :</label>
-                                {{ form_widget(registrationForm.confirmMotDePasse,{'attr':{'class':'form-control'}}) }}
-                                <span style="color:red">{{ form_errors(registrationForm.confirmMotDePasse) }}</span>
-                                <span class="txt1 p-b-11"> êtes vous un robot ?</span>
-                                <div class="wrap-input100 m-b-36">
-                                    {{ form_widget(registrationForm.captchaCode, {'attr': {'class': 'input100'} }) }}
-                                    <span class="focus-input100"></span>
-                                </div>
-
-                                <br/>
-                                <div class="text-center">
-                                    {{ form_widget(registrationForm.ajouter,{'attr':{'class':'btn btn-primary'}})}}
-                                    <button type="reset" class="btn btn-secondary">Annuler</button>
-                                </div>
-                                <br/>
-
-                                <div class="error">{{ form_errors(registrationForm.captchaCode) }} </div>
-                                {{ form_end(registrationForm) }}<!-- Vertical Form -->
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group create-account">
+                                <input id="cbox" type="checkbox">
+                                <label>Create an account?</label>
                             </div>
                         </div>
                     </div>
+                    <div class="single-widget get-button">
+                        <div class="content">
+                            <div class="button">
+                                {{ form_widget(registrationForm) }}
+                                <button class="btn">{{ button_label|default('Save') }}</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ form_end(registrationForm) }}
+
+
                 </div>
             </div>
-
-        </section>
-
+        </div>
     </div>
-</main><!-- End #main -->
-
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.min.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+</section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -34,7 +34,7 @@ class RegistrationFormType extends \Symfony\Component\Form\AbstractType
 
             ->add('image',FileType::class, array('label'=>'Upload Image')
             )
-            ->add('ajouter', SubmitType::class)
+
         ;
     }
 
