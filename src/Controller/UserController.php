@@ -108,9 +108,10 @@ class UserController extends AbstractController
      */
     public function edit(Request $request,   UserPasswordEncoderInterface $encoder,EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        $user = $this->getUser();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('image')->getData();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
