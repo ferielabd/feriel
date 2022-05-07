@@ -108,16 +108,18 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/{idUser}", name="app_user_show", methods={"GET"})
+     * @Route("/user{idUser}", name="app_user_show", methods={"GET"})
      */
-    public function show(): Response
+    public function show()
     {
 
-
-     $user = $this->getUser();
+        $user = $this->getUser();
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
+
+
+
     }
 
     /**
