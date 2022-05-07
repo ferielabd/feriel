@@ -15,7 +15,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\File;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * @Route("/user")
  */
@@ -171,9 +172,10 @@ class UserController extends AbstractController
 
     //***********************************Client Start***********************************************************//
     /**
-     * @Route("/Client", name="app_user_frontC", methods={"GET"})
+     * @Route("/frontC", name="app_user_indexC", methods={"GET"})
+     *
      */
-    public function fontC(EntityManagerInterface $entityManager): Response
+    public function indexC(): Response
     {
         return $this->render('Client/indexC.html.twig'
         );
