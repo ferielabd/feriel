@@ -44,7 +44,14 @@ class UserRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
+    public function findByNom($txt)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager
+            ->createQuery("SELECT u from APP\Entity\User u where u.nom like :txt ")
+            ->setParameter('txt', '%' . $txt . '%');
+        return $query->getResult();
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
