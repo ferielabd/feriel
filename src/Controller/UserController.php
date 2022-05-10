@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\File;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Repository\UserRepository;
 /**
  * @Route("/user")
  */
@@ -221,7 +223,20 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/s/search", name="search")
+     */
+    public function searchJeux(Request $request, NormalizerInterface $Normalizer, UserRepository $repository): Response
+    {
 
+        $requestString = $request->get('searchValue');
+
+        $User = $repository->findByNom($requestString);
+
+        $jsonContent = $Normalizer->normalize($User, 'json', ['Groups' => 'User:read']);
+        $retour = json_encode($jsonContent);
+        return new Response($retour);
+    }
 
 
     /**

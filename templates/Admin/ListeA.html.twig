@@ -4,14 +4,23 @@
 
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <div class="page-title">
+            <form>
+                <div class="input-group input-group-dynamic mb-8">
+                    <span class="input-group-text"></span>
 
+                    <input class="form-control" id="search" placeholder="Search" type="text">
+
+                </div>
+            </form>
             <div class="pull-left">
-                <h1 class="title">CLients</h1>        </div>
+                <h1 class="title">CLients</h1>
+            </div>
 
             <div class="pull-right hidden-xs">
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html"><i class="fa fa-home"></i>Menu</a>
+                        <a href="index.html">
+                            <i class="fa fa-home"></i>Menu</a>
                     </li>
                     <li>
                         <a href="eco-customers.html">CLients</a>
@@ -36,31 +45,33 @@
                     <i class="box_close fa fa-times"></i>
                 </div>
             </header>
-            <div class="content-body">    <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-
+            <div class="content-body">
+                <div class="row">
+                    <div
+                            class="col-md-12 col-sm-12 col-xs-12">
 
 
                         <!-- ******************************************** -->
 
 
-                        <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                        <table id="t" class="display table table-hover table-condensed" cellspacing="0" width="100%">
 
                             <thead>
                             <tr>
 
-                                <th >Nom</th>
-                                <th >prenom</th>
-                                <th >Email</th>
-                                <th >adresse</th>
-                                <th >Telephone</th>
-                                <th >image</th>
-                                <th >Modification</th>
-                                <th >Supprission</th>
+                                <th>Nom</th>
+                                <th>prenom</th>
+                                <th>Email</th>
+                                <th>adresse</th>
+                                <th>Telephone</th>
+                                <th>image</th>
+                                <th>Modification</th>
+                                <th>Supprission</th>
                             </tr>
                             </thead>
+                            <tbody id="all">
                             {% for user in users %}
-                                <tbody>
+
 
                                 <tr>
 
@@ -70,31 +81,98 @@
                                     <td>{{ user.adresse }}</td>
                                     <td>{{ user.phone }}</td>
                                     <td><img src="{{ asset('upload/' ~user.image) }}" style=" width:100px; height:100px; " alt=""/></td>
-                                    <td>   <a href="{{path('app_user_edit',{'idUser': user.idUser})}}" ><i class="fa fa-pencil-square-o"></i></a>
+                                    <td>
+                                        <a href="{{path('app_user_edit',{'idUser': user.idUser})}}">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
                                     </td>
-                                    <td> <a href="{{path('rem_client',{'idUser':user.idUser})}}"><i class="fa fa-remove"></i></a></td>
+                                    <td>
+                                        <a href="{{path('rem_client',{'idUser':user.idUser})}}">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
 
-
-
-
-
-
-
-                                </tbody>
                             {% endfor %}
+                            </tbody>
+                            <tbody id="search"></tbody>
                         </table>
                         <!-- ******************************************** -->
-
-
 
 
                     </div>
                 </div>
             </div>
-        </section></div>
+        </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('search') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            // window.alert("sometext");
+
+                            $.each(JSON.parse(retour), function(o, obj) {
+                                console.log(obj);
+
+                                $('#t tbody#all').hide();
 
 
+                                $('#t tbody#search').append("<tr>");
+                                $('#t tbody#search').append(" <td>"+obj.nom+"</td>");
+                                $('#t tbody#search').append(" <td>"+obj.prenom+"</td>");
+                                $('#t tbody#search').append(" <td>"+obj.email+"</td>");
+                                $('#t tbody#search').append(" <td>"+obj.adresse+"</td>");
+                                $('#t tbody#search').append(" <td>"+obj.phone+"</td>");
+
+                                var p="/upload/"+obj.image;
+                                var img = "<img src="+p+" width='100' height='100'/>";
+                                $('#t tbody#search').append(" <td>"+img+"</td>");
+
+
+
+
+                                $('#t tbody#search').append("</tr>");
+                                // <td>'+obj.description+'</td><td>'+obj.dateajout+'  </td><td></td><td><a href="article/'+obj.id+'">show</a> </br><a href="article/'+obj.id+'/edit">edit</a></td></tr>');
+                            });
+                        }
+                        //$('#t tbody#search').append('<tr><td> '+obj.lieu+'  </td><td>    '+obj.nbPlace+'  </td><td>'+obj.descriptions+' </td><td>'+obj.dateEvent+' </td><td>'+obj.getcategory+' </td><td>'+obj.Description+'</td><td><td><a href="event/'+obj.idEvent+'/edit">Modifier</a></td></tr>');
+                        else
+                        {
+
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+
+
+
+
+
+        });
+    </script>
 
 
 {% endblock %}
-
